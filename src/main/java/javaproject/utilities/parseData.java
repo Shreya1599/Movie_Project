@@ -176,55 +176,20 @@ public class parseData {
         return MaxGenreId;
     }
 
-    public  Map getTopMovieByGenre(ArrayList<rating> rate_data, ArrayList<movie> movie_data,Map<Integer,String> map2) {
-        Map<String,List<String>> movielistbygenre=new HashMap<>();
-        Map<Integer,Integer> movie_rating=new LinkedHashMap<>();
-
-        for(int i=0;i<rate_data.size();i++){
-            if(movie_rating.get(rate_data.get(i).movieid)==null){
-                movie_rating.put(rate_data.get(i).movieid,rate_data.get(i).rate);
-            }
-        }
-        Set<Integer> keys=movie_rating.keySet();
-        Iterator it = keys.iterator();
-        int previous_rating[]=new int[20];
-        for(;it.hasNext();it.next())
+    public static int[] getTopMovieByGenre(ArrayList<rating> rate_data, ArrayList<movie> movie_data) {
+        int obj[]=new int[20];
+        for(int i=0;i<rate_data.size();i++)
         {
-            int movie_id= (int)it.next();
-            int rating=movie_rating.get(movie_id).intValue();
+            int mid=rate_data.get(i).movieid;
             for(int j=0;j<19;j++)
             {
-                if(movie_data.get(movie_id-1).genre.get(j)==1)
+                if(movie_data.get(mid).genre.get(j)==1 && obj[j]==0)
                 {
-                    if(previous_rating[j]==0){
-                        List<String> list=new ArrayList<>();
-                        list.add(movie_data.get(movie_id-1).title);
-                        previous_rating[j]=rating;
-                        movielistbygenre.put(map2.get(j),list);
-                    }
-                    else{
-                        if(previous_rating[j]==rating){
-                            List<String> list=movielistbygenre.get(map2.get(j));
-                            list.add(movie_data.get(movie_id-1).title);
-                            movielistbygenre.put(map2.get(j),list);
-                        }
-                        else{
-                            previous_rating[j]=-1;
-                        }
-                    }
+                    obj[j]=mid;
                 }
-            }
-            int i;
-            for(i=0;i<previous_rating.length;i++){
-                if(previous_rating[i]!=-1){
-                    break;
-                }
-            }
-            if(i==previous_rating.length){
-                break;
             }
         }
-        return movielistbygenre;
+        return obj;
     }
 
     public Map getTopMovieByYear(ArrayList<rating> rate_data, ArrayList<movie> movie_data,Map<Integer,String> map2){
