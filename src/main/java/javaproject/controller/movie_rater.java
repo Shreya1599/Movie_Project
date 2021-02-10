@@ -81,10 +81,14 @@ public class movie_rater {
     }
 
 
-    @GetMapping(value = "/getTopMovieByGenre" ,produces = MediaType.APPLICATION_JSON_VALUE)
-    public Map<String,List<String>> getTopMovieBygenre() {
-        Map<String,List<String>> TopMovieByGenre = pdata.getTopMovieByGenre(rate_data, movie_data,map2);
-        return TopMovieByGenre;
+     @GetMapping(value = "/getTopMovieByGenre" ,produces = MediaType.APPLICATION_JSON_VALUE)
+    public Map<String,String> getTopMovieBygenre() {
+        Map<String,String> genreMap=new HashMap<>();
+        int TopMovieByGenre[] = pdata.getTopMovieByGenre(rate_data, movie_data);
+        for (int i = 0; i < 19; i++) {
+            genreMap.put(map2.get(i),map1.get(TopMovieByGenre[i]));
+        }
+        return genreMap;
     }
 
     @GetMapping(value = "/getTopMovieByYear" ,produces = MediaType.APPLICATION_JSON_VALUE)
