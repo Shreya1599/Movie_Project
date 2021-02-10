@@ -225,53 +225,6 @@ public class parseData {
          return movielistbyYear;
     }
 
-    public void parseMovieData(List<movie> movieList){
-        for(int i=0;i<movieList.size();i++){
-            movie mv=movieList.get(i);
-            String str=mv.date;
-            String[] arrOfStr = str.split("-");
-            switch(arrOfStr[1]){
-                case Constants.JANUARY:
-                    str=arrOfStr[0]+"-"+"01"+"-"+arrOfStr[2];
-                    break;
-                case Constants.FEBUARY:
-                    str=arrOfStr[0]+"-"+"02"+"-"+arrOfStr[2];
-                    break;
-                case Constants.MARCH:
-                    str=arrOfStr[0]+"-"+"03"+"-"+arrOfStr[2];
-                    break;
-                case Constants.APRIL:
-                    str=arrOfStr[0]+"-"+"04"+"-"+arrOfStr[2];
-                    break;
-                case Constants.MAY:
-                    str=arrOfStr[0]+"-"+"05"+"-"+arrOfStr[2];
-                    break;
-                case Constants.JUNE:
-                    str=arrOfStr[0]+"-"+"06"+"-"+arrOfStr[2];
-                    break;
-                case Constants.JULY:
-                    str=arrOfStr[0]+"-"+"07"+"-"+arrOfStr[2];
-                    break;
-                case Constants.AUGUST:
-                    str=arrOfStr[0]+"-"+"08"+"-"+arrOfStr[2];
-                    break;
-                case Constants.SEPTEMBER:
-                    str=arrOfStr[0]+"-"+"09"+"-"+arrOfStr[2];
-                    break;
-                case Constants.OCTOBER:
-                    str=arrOfStr[0]+"-"+"10"+"-"+arrOfStr[2];
-                    break;
-                case Constants.NOVEMBER:
-                    str=arrOfStr[0]+"-"+"11"+"-"+arrOfStr[2];
-                    break;
-                case Constants.DECEMBER:
-                    str=arrOfStr[0]+"-"+"12"+"-"+arrOfStr[2];
-                    break;
-            }
-            mv.date=str;
-            movieList.add(i,mv);
-        }
-    }
 
     public void loadMovieDataIntoMap(Map map1, List<movie> movie_data){
         for (int i = 0; i < movie_data.size(); i++) {                                // creating key & value pair by using id and tittle
